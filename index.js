@@ -59,11 +59,20 @@ io.on('connection',(socket)=>{
         const values = {$set:{move,winner,value}}
         try{
             const res = await collection.updateOne(query,values);
-            callback({status:'success',message:`Game at ${address} resolved successfully`});
+            callback({status:'success',message:`Game Over: ${address} `});
         }catch(error){
             callback({status:'error',message:'Network Error:Failed to update'});
         }
-
+    });
+    socket.on('timeout',async(address,winner,player,value,callback)=>{
+        const query = {address}
+        const values = {$set:{winner,player,value}}
+        try{
+            const res = await collection.updateOne(query,values);
+            callback({status:'success',message:`Game Over: ${address}`});
+        }catch(error){
+            callback({status:'error',message:'Network Error:Failed to update'});
+        }
     });
 })
 
