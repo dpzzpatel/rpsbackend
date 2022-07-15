@@ -54,9 +54,9 @@ io.on('connection',(socket)=>{
             callback({status:'error',message:'Network Error:Failed to remove address from db'});
         }
     });
-    socket.on('solved',async(address,move,winner,value,callback)=>{
+    socket.on('solved',async(address,move,c2,winner,value,callback)=>{
         const query = {address}
-        const values = {$set:{move,winner,value}}
+        const values = {$set:{move,c2,winner,value}}
         try{
             const res = await collection.updateOne(query,values);
             callback({status:'success',message:`Game Over: ${address} `});
