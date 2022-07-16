@@ -2,7 +2,7 @@ const app = require("express")();
 const http = require("http").Server(app);
 const io = require("socket.io")(http,{
 	cors: {
-    origin: 'http:localhost:4001,rps-mocha.vercel.app,rps-dpzzpatel.vercel.app',
+    origin: 'http:localhost:4001,https://rps-mocha.vercel.app/,https://rps-mocha.vercel.app/',
   }
 });
 const dotenv = require('dotenv');
